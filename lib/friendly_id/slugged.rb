@@ -242,7 +242,18 @@ issue}[https://github.com/norman/friendly_id/issues/180] for discussion.
     # @param [#to_s] value The value used as the basis of the slug.
     # @return The candidate slug text, without a sequence.
     def normalize_friendly_id(value)
-      value.to_s.parameterize
+      # Fix to number based slugs which get mistaken as id's
+      value = value.to_s.parameterize
+      is_number = true if Float(value) rescue false
+      if is_number
+        return "#{rand_slug}#{value}"
+      end
+      value
+    end
+    # Generate random 10 character string for use in number error situations
+    # Instead of rejecting id/number based slug 
+    def rand_slug
+      (0...10).map{ ('a'..'z').to_a[rand(26)] }.join
     end
 
     # Whether to generate a new slug.
