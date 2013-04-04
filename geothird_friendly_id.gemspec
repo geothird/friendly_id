@@ -4,7 +4,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "friendly_id"
 
 Gem::Specification.new do |s|
-  s.name              = "geothird-friendly_id"
+  s.name              = "geothird_friendly_id"
   s.version           = FriendlyId::VERSION
   s.authors           = ["Norman Clarke", "Philip Arndt"]
   s.email             = ["norman@njclarke.com", "parndt@gmail.com"]
