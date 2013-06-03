@@ -139,7 +139,7 @@ an example of one way to set this up:
       def conflict
         columns = friendly_id_config.scope_columns
         matched = columns.inject(conflicts) do |memo, column|
-           memo.with_deleted.where(column => sluggable.send(column))
+           memo.where(column => sluggable.send(column))
         end
 
         matched.first

@@ -221,9 +221,9 @@ often better and easier to use {FriendlyId::Slugged slugs}.
       relation = relation_class.new(self, arel_table)
 
       if finder_needs_type_condition?
-        relation.with_deleted.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
+        relation.where(type_condition).create_with(inheritance_column.to_sym => sti_name)
       else
-        relation.with_deleted
+        relation
       end
     end
 

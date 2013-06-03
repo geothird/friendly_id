@@ -124,7 +124,7 @@ method.
         pkey            = sluggable_class.primary_key
         value           = sluggable.send pkey
 
-        scope = Slug.where("slug = ? OR slug LIKE ?", normalized, wildcard)
+        scope = Slug.with_deleted.where("slug = ? OR slug LIKE ?", normalized, wildcard)
         scope = scope.where(:sluggable_type => sluggable_class.to_s)
         scope = scope.where("sluggable_id <> ?", value) unless sluggable.new_record?
         scope.order("LENGTH(slug) DESC, slug DESC")

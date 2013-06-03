@@ -14,7 +14,7 @@ module FriendlyId
     # @see FriendlyId::ObjectUtils
     def find_one(id)
       return super if id.unfriendly_id?
-      with_deleted.where(@klass.friendly_id_config.query_field => id).first or super
+      where(@klass.friendly_id_config.query_field => id).first or super
     end
 
     # FriendlyId overrides this method to make it possible to use friendly id's

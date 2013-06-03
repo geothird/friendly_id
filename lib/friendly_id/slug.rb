@@ -3,6 +3,7 @@ module FriendlyId
   #
   # @see FriendlyId::History
   class Slug < ActiveRecord::Base
+    acts_as_paranoid column_type: 'boolean'
     self.table_name = "friendly_id_slugs"
     belongs_to :sluggable, :polymorphic => true
 
