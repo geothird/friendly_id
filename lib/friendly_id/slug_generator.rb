@@ -57,8 +57,8 @@ module FriendlyId
       base = "#{column} = ? OR #{column} LIKE ?"
       # Awful hack for SQLite3, which does not pick up '\' as the escape character without this.
       base << "ESCAPE '\\'" if sluggable.connection.adapter_name =~ /sqlite/i
-      scope = sluggable_class.unscoped.where(base, normalized, wildcard)
-      scope = scope.with_deleted.where("#{pkey} <> ?", value) unless sluggable.new_record?
+      scope = sluggable_class.unscoped.with_deleted.where(base, normalized, wildcard)
+      scope = scope.where("#{pkey} <> ?", value) unless sluggable.new_record?
       scope = scope.order("LENGTH(#{column}) DESC, #{column} DESC")
     end
 
