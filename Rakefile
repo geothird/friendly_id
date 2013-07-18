@@ -21,7 +21,7 @@ task :clean do
 end
 
 task :gem do
-  %x{gem build friendly_id.gemspec}
+  %x{gem build mil_friendly_id.gemspec}
 end
 
 task :yard => :guide do
