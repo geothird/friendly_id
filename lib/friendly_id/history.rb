@@ -77,7 +77,7 @@ method.
       # Allow reversion back to a previously used slug
       relation = slugs.where(:slug => friendly_id)
       result = relation.select("id").lock(true).all
-      relation.delete_all unless result.empty?
+      relation.with_deleted.delete_all! unless result.empty?
       slugs.create! do |record|
         record.slug = friendly_id
       end
